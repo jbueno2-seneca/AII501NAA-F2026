@@ -1,0 +1,27 @@
+Implementation for question 1d)
+
+email = read .eml file and save as string array of sender email address and message body
+allow_list = read allow list file and save in string array
+restrict_list = read restrict list file and save in string array
+bad_word_list = read bad word list file and save in string array
+
+function main {
+	if email.sender_email_address in allow_list {
+		return safe
+	}
+	else if email.sender_email_address in restrict_list {
+		return spam
+	}
+	else {
+		bad_word_count = 0
+		for word in email.message_body {
+			if word in bad_word_list {
+				bad_word_count += 1
+			}
+		}
+		if bad_word_count > 5 {
+			return spam
+		}
+	}
+	return safe
+}
